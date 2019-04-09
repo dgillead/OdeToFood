@@ -1,6 +1,7 @@
 ﻿namespace OdeToFood.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using OdeToFood.Models;
     using OdeToFood.Services.Interfaces;
     using OdeToFood.ViewModels;
 
@@ -39,10 +40,23 @@
             return View(model);
         }
 
-        [Route("create")]
+        [HttpGet, Route("create")]
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost, Route("create")]
+        public IActionResult Create(RestaurantEditModel model)
+        {
+            var newRestaurant = new Restaurant
+            {
+                Name = model.Name,
+                Cuisine = model.Cuisine
+            };
+            newRestaurant = _restaurantData.Add(newRestaurant);
+
+            return View("Details", newRestaurant);
         }
     }
 }

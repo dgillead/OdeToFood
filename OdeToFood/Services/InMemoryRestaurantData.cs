@@ -28,5 +28,12 @@
         {
             return _restaurants.FirstOrDefault(x => x.Id == id);
         }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = _restaurants.Count + 1;
+            _restaurants.Add(newRestaurant);
+            return newRestaurant;
+        }
     }
 }

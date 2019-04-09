@@ -7,5 +7,6 @@
     {
         IEnumerable<Restaurant> GetAll();
         Restaurant GetRestaurantById(int id);
+        Restaurant Add(Restaurant newRestaurant);
     }
 }
